@@ -67,7 +67,11 @@ public class Extension implements FREExtension {
 		{
 			for (String key : bundle.keySet())
 			{
-				paramsJson.put(key, bundle.getString(key));
+                try {
+                    paramsJson.put(key, bundle.getString(key));
+                } catch (Exception e) {
+                    log("skipping parameter: " + key);
+                }
 			}
 			
 			if(parameters != null)
